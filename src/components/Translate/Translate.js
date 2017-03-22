@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ImageView from './ImageView/ImageView.js';
 import Results from './Results/Results.js';
 
+
 class Translate extends Component {
   constructor(props) {
     super(props);
@@ -9,12 +10,11 @@ class Translate extends Component {
     this.state = {
       keywords: []
     }
-
+    
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.setState({
       keywords: this.props.keywords
     });

@@ -10,7 +10,6 @@ class TranslateResult extends Component {
 
     this.state = {
       keywords: [],
-      translatedKeywords: [],
       targetLanguage: 'en'
     }
 
@@ -54,9 +53,7 @@ class TranslateResult extends Component {
       axios.post('/api/translate', { keywords: this.state.keywords, source: 'en', target: this.state.targetLanguage })
         .then((result) => {
           var translations = result.data.data.translations.map(v => v.translatedText);
-          this.setState({
-            translatedKeywords: translations
-          });
+          this.props.getTranslation(translations);
         });
     });
   }
@@ -80,7 +77,7 @@ class TranslateResult extends Component {
             </select></th>
           </tr>
         </thead>
-        <tbody className="translated-item">
+        {/*<tbody className="translated-item">
           {this.state.translatedKeywords.map((keyword, index) => {
             return (
               <tr key={index}>
@@ -88,7 +85,7 @@ class TranslateResult extends Component {
               </tr>
             )
           })}
-        </tbody>
+        </tbody>*/}
       </table>
     )
   }
