@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router';
+import axios from 'axios';
 
-// import { BrowserRouter, Match, Miss } from 'react-router-dom';
 import Input from './components/Input/Input.jsx';
 import Translate from './components/Translate/Translate.js'
 import './styles/index.css';
@@ -14,11 +14,19 @@ class Root extends Component {
 
     this.state = {
       keywords: [],
-      imgURL: ''
+      imgURL: '',
+      imageURL: ""
     }
 
     this.setRootKeywords = this.setRootKeywords.bind(this);
     this.setRootUrl = this.setRootUrl.bind(this);
+    this.fetchIBM = this.fetchIBM.bind(this);
+    this.handleImageSubmission = this.handleImageSubmission.bind(this);
+    this.changeParentUrl = this.changeParentUrl.bind(this);
+  }
+
+  componentDidUpdate() {
+    console.log('- component did update', this.state);
   }
 
   setRootKeywords(keywords) {
@@ -32,16 +40,65 @@ class Root extends Component {
     this.setState({ imgURL: url });
   }
 
+  // request server /api/upload to receive the ibm results
+  // allow passing callback
+  fetchIBM(cb) {
+    // if the image exists (has been updated by user giving img url or drop down a image) 
+    if (this.state.imageURL) {
+      console.log('POSTING FROM FETCHIBM');
+      axios.post('/api/upload', { url: this.state.imageURL })
+        .then(res => {
+          res.data.sort(function (a,b) {
+            return b.score-a.score;
+          });
+          this.setState({ keywords: res.data }, () => {
+            cb(true);
+          });
+        })
+        .catch(err => {
+          console.log("In App.jsx, request server /api/upload");
+          cb(false);
+        })
+    }
+  }
+
+  handleImageSubmission() {
+    if (this.state.imageURL.length > 0) {
+      console.log('State changed to: ', this.state.imageURL);
+      this.fetchIBM(success => {
+        if (success) {
+          console.log("fetchIBM success the state.keywords ", this.state.keywords);
+          this.setRootKeywords(this.state.keywords)
+        } else {
+          console.log("fetchIBM failed");
+        }
+      });
+
+    }
+  }
+
+  changeParentUrl(url) {
+    console.log('CALLING CHANGEPARENTURL:', url);
+    this.setState({ imageURL: url }, () => {
+      this.setRootUrl(this.state.imageURL);
+      this.handleImageSubmission();
+    });
+  }
+
   render() {
     const { children } = this.props;
 
     return (
-      <div className="react-root">{ children && 
+      <div className="react-root">     
+        { children && 
         React.cloneElement(children, 
         { setRootKeywords: this.setRootKeywords, 
         keywords: this.state.keywords, 
         setRootUrl: this.setRootUrl,
-        imgURL: this.state.imgURL 
+        imgURL: this.state.imgURL,
+        imageURL: this.state.imageURL,
+        changeParentUrl: this.changeParentUrl,
+        fetchIBM: this.fetchIBM
         })}
       </div>
     )
@@ -52,8 +109,7 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path='/' component={Root}>
       <IndexRoute component={App} />
-      <Route path='/translate' component={Translate}>
-      </Route>
+      <Route path='/translate' component={Translate} />
     </Route>
   </Router>
 ), document.getElementById('container'));
