@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('- component did update');
+    console.log('- component did update', this.state);
   }
 
   handleImageSubmission() {
@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   changeParentUrl(url) {
+    console.log('CALLING CHANGEPARENTURL:', url);
     this.setState({ imageURL: url }, () => {
       this.props.setRootUrl(this.state.imageURL);
       this.handleImageSubmission();
@@ -48,6 +49,7 @@ class App extends React.Component {
   fetchIBM(cb) {
     // if the image exists (has been updated by user giving img url or drop down a image) 
     if (this.state.imageURL) {
+      console.log('POSTING FROM FETCHIBM');
       axios.post('/api/upload', { url: this.state.imageURL })
         .then(res => {
           this.setState({ keywords: res.data }, () => {

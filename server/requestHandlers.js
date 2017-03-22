@@ -3,6 +3,7 @@ const axios = require('axios');
 const utility = require('./utility.js');
 const { API_KEY_TRANSLATE, API_KEY_VR } = require('./config.js');
 const path = require('path');
+const fs = require('fs');
 
 
 const vrHandler = function(req, res, next) {
@@ -14,14 +15,28 @@ const vrHandler = function(req, res, next) {
     res.send("no-url");
     return;
   }
+
+
+
   const visual_recognition = watson.visual_recognition({
     api_key: API_KEY_VR,
     version: 'v3',
     version_date: '2016-05-20'
   });
-  const params = {
+  let params = {
     url: imgURL
+
   };
+
+  let imagename = imgURL.replace(/http:\/\/localhost:8080\/uploads\//i, '');
+
+  if (params.url.includes('localhost') ) {
+    params = {
+      images_file: fs.createReadStream(__dirname + '/../public/uploads/' + imagename)
+    };
+  }
+
+  console.log('CALLING VISUAL RECOGNITION');
 
   visual_recognition.classify(params, function (err, results) {
     if (err) {
@@ -73,7 +88,9 @@ const rerouteHandler = (req, res) => {
 
 const uploadImage = (req, res, next)=>{
   let file = req.files[0];
+  console.log('req.files[0]:', req.files[0]);
   console.log('Uploaded image to \'' + file.path + '\'');
+  console.log('path.join:', path.join('uploads', file.filename));
   res.send(path.join('uploads', file.filename));
 
 }
