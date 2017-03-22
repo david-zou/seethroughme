@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router';
 import axios from 'axios';
 
-// import { BrowserRouter, Match, Miss } from 'react-router-dom';
 import Input from './components/Input/Input.jsx';
 import Translate from './components/Translate/Translate.js'
 import './styles/index.css';
