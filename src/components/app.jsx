@@ -52,6 +52,9 @@ class App extends React.Component {
       console.log('POSTING FROM FETCHIBM');
       axios.post('/api/upload', { url: this.state.imageURL })
         .then(res => {
+          res.data.sort(function (a,b) {
+            return b.score-a.score;
+          });
           this.setState({ keywords: res.data }, () => {
             cb(true);
           })
