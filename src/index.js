@@ -28,6 +28,7 @@ class Root extends Component {
   }
 
   setRootUrl(url) {
+    console.log('CALLING SETROOTURL:', url);
     this.setState({ imgURL: url });
   }
 

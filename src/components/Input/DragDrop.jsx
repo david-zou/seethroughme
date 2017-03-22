@@ -15,13 +15,17 @@ class DragDrop extends Component{
   }
 
   onDrop(acceptedFiles){
+    console.log('acceptedFiles:', acceptedFiles);
     let file = new FormData();
     file.append('westinFile', acceptedFiles[0]);
     Request.post('/api/img')
       .send(file)
       .end((err, res)=>{
       //we'll update this once we figure out hosting
-        this.props.changeParentUrl('http://104.236.153.154/' + res.text);
+        console.log('response:', res);
+        console.log('error:', err);
+        console.log('http://localhost:8080/' + res.text);
+        this.props.changeParentUrl('http://localhost:8080/' + res.text);
         this.setState({imgURL: res.text});
       });
   }
