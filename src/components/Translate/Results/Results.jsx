@@ -1,7 +1,7 @@
 // Results React Component contain dropdown list and translate Results
 import React, { Component } from 'react';
 // import Keyword from './Keyword/Keyword.js';
-import TranslateResult from './Translate/TranslateResult.js';
+import TranslateResult from './Translate/TranslateResult.jsx';
 import WordTile from './WordTile/WordTile.jsx';
 
 class Results extends Component {

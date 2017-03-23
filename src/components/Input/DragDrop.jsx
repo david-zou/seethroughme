@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 import Request from 'superagent';
 import { browserHistory } from 'react-router';
 
+let context;
 
 class DragDrop extends Component{
 
@@ -12,15 +13,18 @@ class DragDrop extends Component{
       imgURL: ''
     }
     this.onDrop = this.onDrop.bind(this);
+    context = this;
   }
 
   onDrop(acceptedFiles){
-    this.props.handleSpinningProgress();
     console.log('acceptedFiles:', acceptedFiles);
     let file = new FormData();
     file.append('westinFile', acceptedFiles[0]);
     Request.post('/api/img')
       .send(file)
+      .on('error', function(err) {
+        alert('THIS IS A BIG BAD FILE. YOU SHOULD BE ASHAMED.');
+      })
       .end((err, res)=>{
       //we'll update this once we figure out hosting
         console.log('response:', res);

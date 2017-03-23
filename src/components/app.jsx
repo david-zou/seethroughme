@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from './Input/Input.jsx';
-import Translate from './Translate/Translate.js';
+import Translate from './Translate/Translate.jsx';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -70,7 +70,6 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <Input
-          handleSpinningProgress={this.props.handleSpinningProgress}
           progressVisible={this.props.progressVisible}
           changeParentUrl={this.props.changeParentUrl}
           fetchIBM={this.props.fetchIBM}
