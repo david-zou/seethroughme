@@ -6,6 +6,12 @@ module.exports = {
     path: path.join(__dirname, 'bundles'),
     filename: 'bundle.js'
   },
+  node: {
+    //Zane worked on this, workaround not sure what other stuff happens when i do this...
+    net: 'empty',
+    fs: 'empty',
+    tls: 'empty'
+  },
   module: {
     loaders: [
       {

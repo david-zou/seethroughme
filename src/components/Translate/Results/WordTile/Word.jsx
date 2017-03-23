@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Word = ({ word }) => {
+const Word = ({ word,spokenLanguage }) => {
   return (
     <div className="wordTile Post" >
       <div>{ word.class }</div>

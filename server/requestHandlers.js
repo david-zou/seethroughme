@@ -1,10 +1,32 @@
 const watson = require('watson-developer-cloud');
+const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const axios = require('axios');
 const utility = require('./utility.js');
 const { API_KEY_TRANSLATE, API_KEY_VR } = require('./config.js');
 const path = require('path');
 const fs = require('fs');
 
+
+const speechHandler = function (req, res, next) {
+  let text_to_speech = new TextToSpeechV1 ({
+      //these shouldn't be hardcoded, should be referenced from config
+      username: '1179c1d9-331e-43ba-a5e2-2fd2e2e4da1e',
+      password: '2B7kfkEv1krR'
+    });
+  console.dir(req.body)
+  console.dir('IN HANDLER');
+    let params = {
+      text: req.body.text,
+      voice: req.body.voice,
+      accept: 'audio/wav'
+    }
+    let file = __dirname + '/../public/soundFiles/' + req.body.text + '.wav'
+    text_to_speech.synthesize(params)
+      .on('error', function (error) {
+        console.log('Error: ', error);
+      })
+      .pipe(fs.createWriteStream(file));
+}
 
 const vrHandler = function(req, res, next) {
   console.log("/upload being called");
@@ -99,7 +121,8 @@ module.exports = {
     vrHandler: vrHandler,
     translateHandler: translateHandler,
     rerouteHandler: rerouteHandler,
-    uploadImage: uploadImage
+    uploadImage: uploadImage,
+    speechHandler: speechHandler
 }
 
 
