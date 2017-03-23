@@ -176,12 +176,23 @@ img {
 /*  height: 150px;
   width: 225px;*/
   order: 2;
-  display: flex;
   margin: 5px auto;
+  width: 250px;
+
   /*justify-content: center;
   align-items: center;*/
 }
 
+.flags {
+  height: 50px;
+  width: 50px;
+  display: inline;
+}
+
+.flagImg {
+  max-height: 30px;
+  margin: 5px;
+}
 
 /* ------ TranslationResults Flexbox ------- */
 
@@ -280,3 +291,7 @@ tr.keyword-header {
 .spinner {
   text-align: center;
 }
+
+/* --------Flags-------- */
+
+

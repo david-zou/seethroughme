@@ -13,3 +13,5 @@ bundles/
 public/uploads/
 
 config/
+
+.DS_Store
