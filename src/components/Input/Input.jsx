@@ -44,7 +44,7 @@ class Input extends Component {
                 placeholder="copy --> paste --> enter"
               />
               <input className="btn btn-primary submitButton" type="submit" value="Submit" onClick={this.props.handleSpinningProgress}/></div>
-              <div className="row spinner">{this.props.progressVisible ? <Spinner/> : ''}</div>
+              <div className="row spinnerBox">{this.props.progressVisible ? <Spinner/> : ''}</div>
             </form>
           </div>
 
@@ -60,7 +60,7 @@ class Input extends Component {
 
 const Spinner = () => {
   return (
-    <img className="spinner" src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_gray_32.gif" />
+    <img className="spinner" src={"assets/spinner.gif"} />
   );
 }
 
