@@ -41,32 +41,32 @@ class TranslateResult extends Component {
 
   render() {
     return (
-      <div>
-        <div className="flags" >
+      <div className="img-hover">
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/china.png"} onClick={() => {this.onLangSelect("zh-CN")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/france.png"} onClick={() => {this.onLangSelect("fr")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/india.png"} onClick={() => {this.onLangSelect("hi")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/israel.png"} onClick={() => {this.onLangSelect("iw")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/japan.png"} onClick={() => {this.onLangSelect("ja")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/south-korea.png"} onClick={() => {this.onLangSelect("ko")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/spain.png"} onClick={() => {this.onLangSelect("es")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/united-states.png"} onClick={() => {this.onLangSelect("en")}}/>
         </div>
-        <div className="flags" >
+        <div className="flags img-responsive img-rounded" >
           <img className="flagImg" src={"assets/germany.png"} onClick={() => {this.onLangSelect("de")}}/>
         </div>
       </div>
