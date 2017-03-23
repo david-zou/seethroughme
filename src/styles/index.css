@@ -335,6 +335,11 @@ tr.keyword-header {
 
 .spinner {
   text-align: center;
+  height: 75px;
+}
+
+.spinnerBox {
+  text-align: center;
 }
 
 /* --------Flags-------- */
