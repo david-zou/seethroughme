@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DragDrop from './DragDrop.jsx';
-import { browerHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 //import '../../styles/App.css';
 
 class Input extends Component {
@@ -12,7 +12,6 @@ class Input extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleUrlUpdate = this.handleUrlUpdate.bind(this);
-    console.log(this.props.handleImageSubmission)
   }
 
   handleUrlUpdate(event){
@@ -37,12 +36,15 @@ class Input extends Component {
 
           <div className="url-input-field">
             <form onSubmit={this.handleClick}>
+              <div className="row">
               <input className="input"
                 type="text"
                 value={this.state.url}
                 onChange={this.handleUrlUpdate}
                 placeholder="copy --> paste --> enter"
               />
+              <input className="btn btn-primary submitButton" type="submit" value="Submit" onClick={this.props.handleSpinningProgress}/></div>
+              <div className="row spinner">{this.props.progressVisible ? <Spinner/> : ''}</div>
             </form>
           </div>
 
@@ -50,10 +52,18 @@ class Input extends Component {
         </div>
 
 
-        <DragDrop className="dragdrop-input" changeParentUrl={this.props.changeParentUrl} />
+        <DragDrop className="dragdrop-input" changeParentUrl={this.props.changeParentUrl} handleSpinningProgress={this.props.handleSpinningProgress} />
       </div>
     );
   }
 }
+
+const Spinner = () => {
+  return (
+    <img className="spinner" src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_gray_32.gif" />
+  );
+}
+
+// onClick={this.props.handleSpinningProgress}
 
 export default Input;

@@ -15,6 +15,7 @@ class DragDrop extends Component{
   }
 
   onDrop(acceptedFiles){
+    this.props.handleSpinningProgress();
     console.log('acceptedFiles:', acceptedFiles);
     let file = new FormData();
     file.append('westinFile', acceptedFiles[0]);
