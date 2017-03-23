@@ -33,6 +33,7 @@ const speechHandler = function (req, res, next) {
       })
       .pipe(fs.createWriteStream(file))
       .on('finish', function () {
+        console.log('finished writing: ', fileLoc)
         res.send({word: params.text, location: fileLoc});
         next();
       });

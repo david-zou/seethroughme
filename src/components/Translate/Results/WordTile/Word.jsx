@@ -12,19 +12,23 @@ class Word extends React.Component {
   }
 
 
+
   render() {
     let audio = () => {
-      if (this.state.url) {
-        return <audio controls>
-                    <source src={this.state.url} type="audio/wav" />
+      console.log('PROPS SOUND', this.props.sound);
+      console.log('PROPS WORD', this.props.word.translation);
+      console.log('RUNNING AUDIO WITH THIS URL', this.props.sound[this.props.word.translation]);
+      if (this.props.sound[this.props.word.translation]) {
+        return <audio autoPlay>
+                    <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                   </audio>
       } else {
         return null;
       }
     }
-    audio();
+
     return (
-      <div className="wordTile Post" >
+      <div className="wordTile Post" onClick={ () => {this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
         <div>{ this.props.word.class }</div>
         <div>{ this.props.word.score }</div>
         <div>{ this.props.word.translation }</div>

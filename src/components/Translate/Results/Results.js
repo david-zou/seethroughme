@@ -30,13 +30,13 @@ class Results extends Component {
     console.log('translations in results.js: ', translations);
     console.dir(`this.props.keywords[0].class: ${this.props.keywords[0].class}`);
     let newwords = this.props.keywords.map((keyword, index) => {
-      console.log(`keyword: ${keyword}`);
+      console.dir(keyword, 'KEYWORD');
       keyword.translation = translations[index];
       return keyword;
     });
     console.log('newwords[1]: ', newwords[1]);
     this.setState ({
-      wordTiles: this.state.wordTiles.concat(newwords),
+      wordTiles: newwords,
       spokenLanguage: this.spokenLanguages[newLanguage]
     })
   }
