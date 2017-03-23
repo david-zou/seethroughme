@@ -273,13 +273,17 @@ tr.keyword-header {
 /* --------wordTiles -------- */
 
 .wordTiles {
-  margin: 2px auto;
+  margin: 4px auto;
   display: block;
   width: 7em;
   text-align: center;
   padding-left: 30px;
   padding-right: 30px;
+}
 
+.wordTiles :hover {
+  color: #fff;
+  background: #24325E;
 }
 
 .wordTile {
@@ -343,5 +347,3 @@ tr.keyword-header {
 }
 
 /* --------Flags-------- */
-
-
