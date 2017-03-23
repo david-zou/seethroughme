@@ -8,7 +8,7 @@ class WordTile extends Component {
     super(props);
 
     this.state = {
-      
+      soundFiles: {}
     }
 
     this.text_to_speech = new TextToSpeechV1 ({
@@ -21,8 +21,21 @@ class WordTile extends Component {
   }
 
   synthesize (word, language) {
-    console.log('SYNTHESIZE TRIGGERED');
+    console.log('IN SYNTHESIZE');
+    console.log(word)
+    console.log(language)
     axios.post('/api/speech', {text: word, voice: language, accept: 'audio/wav'} )
+      .then((res) => {
+        let newFiles = this.state.soundFiles;
+        newFiles[res.data.word] = res.data.location
+        this.setState({
+          soundFiles: newFiles
+        });
+        console.log('CURRENT STATE: ', this.state);
+      })
+      .catch((err) => {
+        console.log('FOUND AN ERROR IN SYNTHESIZE: ', err);
+      })
     // console.log(fs, 'CREATE WRITE');
     // let params = {
     //   text: word,
@@ -43,7 +56,7 @@ class WordTile extends Component {
     return this.props.wordTiles.length > 0 ? (
       <div className="wordTiles pre-scrollable postScroller">
         { this.props.wordTiles.map((word, index) => 
-          <Word key={index} word={ word } onClick={ this.synthesize(word.translation, this.props.spokenLanguage)}/>
+          <Word key={index} word={ word } sound={this.state.soundFiles} synthesize={this.synthesize} spokenLanguage={this.props.spokenLanguage}/>
         )}
       </div>
     ) : (
