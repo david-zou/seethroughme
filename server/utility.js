@@ -7,6 +7,8 @@ module.exports.isValidUrl = function(url) {
   return url.match(rValidUrl);
 };
 
+const maxSize = 2097152;  // 2 MB File Limit in bytes
+
 const multerStorageTemplate = multer.diskStorage({
   destination: 'public/uploads/',
   filename: (req, file, cb)=>{
@@ -17,4 +19,7 @@ const multerStorageTemplate = multer.diskStorage({
   }
 })
 
-module.exports.fileParser = multer({storage: multerStorageTemplate});
+module.exports.fileParser = multer({
+  storage: multerStorageTemplate,
+  limits: { fileSize: maxSize }
+});

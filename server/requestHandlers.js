@@ -44,8 +44,9 @@ const vrHandler = function(req, res, next) {
   const imgURL = req.body.url;
   // check if the imgURL is empty or valid url
   if (!imgURL || !utility.isValidUrl(imgURL)) {
-    console.log("client didn't provide image url or url is not valid");
-    res.send("no-url");
+
+    console.log("client didn't provide image url or url is not valid or file is too large");
+    res.status(400).send("bad request");
     return;
   }
 

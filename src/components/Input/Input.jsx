@@ -43,8 +43,8 @@ class Input extends Component {
                 onChange={this.handleUrlUpdate}
                 placeholder="copy --> paste --> enter"
               />
-              <input className="btn btn-primary submitButton" type="submit" value="Submit" onClick={this.props.handleSpinningProgress}/></div>
-              <div className="row spinnerBox">{this.props.progressVisible ? <Spinner/> : ''}</div>
+              <input className="btn btn-primary submitButton" type="submit" value="Submit"/></div>
+              <div className="row spinner">{this.props.progressVisible ? <Spinner/> : ''}</div>
             </form>
           </div>
 
@@ -52,7 +52,7 @@ class Input extends Component {
         </div>
 
 
-        <DragDrop className="dragdrop-input" changeParentUrl={this.props.changeParentUrl} handleSpinningProgress={this.props.handleSpinningProgress} />
+        <DragDrop className="dragdrop-input" changeParentUrl={this.props.changeParentUrl} />
       </div>
     );
   }
@@ -63,7 +63,5 @@ const Spinner = () => {
     <img className="spinner" src={"assets/spinner.gif"} />
   );
 }
-
-// onClick={this.props.handleSpinningProgress}
 
 export default Input;

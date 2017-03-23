@@ -4,7 +4,7 @@ import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router';
 import axios from 'axios';
 
 import Input from './components/Input/Input.jsx';
-import Translate from './components/Translate/Translate.js'
+import Translate from './components/Translate/Translate.jsx'
 import './styles/index.css';
 import App from './components/app.jsx'
 
@@ -58,20 +58,22 @@ class Root extends Component {
           });
         })
         .catch(err => {
-          console.log("In App.jsx, request server /api/upload");
+          console.log("FAIL In App.jsx, request server /api/upload:", err);
           cb(false);
         })
     }
   }
 
   handleImageSubmission() {
+    this.handleSpinningProgress();
     if (this.state.imageURL.length > 0) {
       console.log('State changed to: ', this.state.imageURL);
-      this.fetchIBM(success => {
+      this.fetchIBM( (success) => {
         if (success) {
           console.log("fetchIBM success the state.keywords ", this.state.keywords);
-          this.setRootKeywords(this.state.keywords)
+          this.setRootKeywords(this.state.keywords);
         } else {
+          this.handleSpinningProgress();
           console.log("fetchIBM failed");
         }
       });
@@ -88,6 +90,7 @@ class Root extends Component {
   }
 
   handleSpinningProgress() {
+    console.log('TOGGLING SPINNER');
     this.setState({
     	progressVisible: !this.state.progressVisible      
     })
@@ -102,11 +105,11 @@ class Root extends Component {
         React.cloneElement(children, 
         { setRootKeywords: this.setRootKeywords, 
         keywords: this.state.keywords, 
-        handleSpinningProgress: this.handleSpinningProgress,
-        progressVisible: this.state.progressVisible,
         setRootUrl: this.setRootUrl,
         imgURL: this.state.imgURL,
         imageURL: this.state.imageURL,
+        handleSpinningProgress: this.state.handleSpinningProgress,
+        progressVisible: this.state.progressVisible,
         changeParentUrl: this.changeParentUrl,
         fetchIBM: this.fetchIBM
         })}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ImageView from './ImageView/ImageView.js';
-import Results from './Results/Results.js';
+import ImageView from './ImageView/ImageView.jsx';
+import Results from './Results/Results.jsx';
 import { Link } from 'react-router';
 
 class Translate extends Component {
@@ -18,13 +18,13 @@ class Translate extends Component {
     this.setState({
       keywords: this.props.keywords,
     });
-    this.props.handleSpinningProgress();
   }
 
   render() {
     return (
       <div className="translate-container">
         <div className="backButton"><Link className="btn btn-primary" to="/">Back</Link></div>
+        
         <div className="translate-header">translation results</div>
         <div className="translate-components">
           <div className="image-div"><ImageView imgURL={this.props.imgURL} /></div>
