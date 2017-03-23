@@ -34,7 +34,7 @@ class Results extends Component {
     return (
       <div className="results-container, tile">
         <div className="results-item"><TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} /></div>
-        <WordTile wordTiles={ this.state.wordTiles } />
+        <WordTile keywords={this.props.keywords} wordTiles={ this.state.wordTiles } />
       </div>
     )
   }

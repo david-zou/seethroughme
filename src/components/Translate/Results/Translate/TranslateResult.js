@@ -2,7 +2,7 @@
 // display the translated word from API
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import path from 'path';
 
 class TranslateResult extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class TranslateResult extends Component {
     }
 
     this.componentDidUpdate = this.componentDidUpdate.bind(this);
-    this.onDropdownSelect = this.onDropdownSelect.bind(this);
+    this.onLangSelect = this.onLangSelect.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,35 +24,16 @@ class TranslateResult extends Component {
     });
   }
 
-  onDropdownSelect(e) {
-    var language = '';
-    if (e.target.value === 'English') {
-      language = 'en';
-    } else if (e.target.value === 'Spanish') {
-      language = 'es';
-    } else if (e.target.value === 'Chinese') {
-      language = 'zh-CN';
-    } else if (e.target.value === 'French') {
-      language = 'fr';
-    } else if (e.target.value === 'Hindi') {
-      language = 'hi';
-    } else if (e.target.value === 'Korean') {
-      language = 'ko';
-    } else if (e.target.value === 'Hebrew') {
-      language = 'iw';
-    } else if (e.target.value === 'German') {
-      language = 'de';
-    } else if (e.target.value === 'Japanese') {
-      language = 'ja';
-    }
-
+  onLangSelect(lang) {
+    let language = lang;
+    
     this.setState({
       targetLanguage: language
     }, () => {
       // console.log(this.state.keywords, this.state.targetLanguage);
       axios.post('/api/translate', { keywords: this.state.keywords, source: 'en', target: this.state.targetLanguage })
         .then((result) => {
-          var translations = result.data.data.translations.map(v => v.translatedText);
+          let translations = result.data.data.translations.map(v => v.translatedText);
           this.props.getTranslation(translations);
         });
     });
@@ -60,33 +41,35 @@ class TranslateResult extends Component {
 
   render() {
     return (
-      <table className="translation-results-container">
-        <thead className="dropdown-item">
-          <tr className="target-language">
-            <th><span>target language </span></th>
-            <th><select name="languagelist" form="languageform" onChange={this.onDropdownSelect}>
-              <option value="English">English</option>
-              <option value="Spanish">Spanish</option>
-              <option value="Chinese">Chinese</option>
-              <option value="French">French</option>
-              <option value="Hindi">Hindi</option>
-              <option value="Korean">Korean</option>
-              <option value="Hebrew">Hebrew</option>
-              <option value="German">German</option>
-              <option value="Japanese">Japanese</option>
-            </select></th>
-          </tr>
-        </thead>
-        {/*<tbody className="translated-item">
-          {this.state.translatedKeywords.map((keyword, index) => {
-            return (
-              <tr key={index}>
-                <td>{keyword}</td>
-              </tr>
-            )
-          })}
-        </tbody>*/}
-      </table>
+      <div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/china.png"} onClick={() => {this.onLangSelect("zh-CN")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/france.png"} onClick={() => {this.onLangSelect("fr")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/india.png"} onClick={() => {this.onLangSelect("hi")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/israel.png"} onClick={() => {this.onLangSelect("iw")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/japan.png"} onClick={() => {this.onLangSelect("ja")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/south-korea.png"} onClick={() => {this.onLangSelect("ko")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/spain.png"} onClick={() => {this.onLangSelect("es")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/united-states.png"} onClick={() => {this.onLangSelect("en")}}/>
+        </div>
+        <div className="flags" >
+          <img className="flagImg" src={"assets/germany.png"} onClick={() => {this.onLangSelect("de")}}/>
+        </div>
+      </div>
     )
   }
 }
