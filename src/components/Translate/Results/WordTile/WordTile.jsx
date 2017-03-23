@@ -51,7 +51,7 @@ class WordTile extends Component {
         { this.props.keywords.map((keyword, index) => 
           <div className="wordTile Post" >
             <div>{ keyword.class }</div>
-            <div>{ keyword.score }</div>
+            <div>{`${ Math.floor(keyword.score*100) }%`}</div>
           </div>
         )}
       </div>
