@@ -13,19 +13,29 @@ const speechHandler = function (req, res, next) {
       username: '1179c1d9-331e-43ba-a5e2-2fd2e2e4da1e',
       password: '2B7kfkEv1krR'
     });
-  console.dir(req.body)
-  console.dir('IN HANDLER');
+
+    let newText = req.body.text;
+
+    if (newText.includes(' ')) {
+      newText = newText.split(' ').join('')
+    }
+
     let params = {
       text: req.body.text,
       voice: req.body.voice,
       accept: 'audio/wav'
     }
-    let file = __dirname + '/../public/soundFiles/' + req.body.text + '.wav'
+    let file = __dirname + '/../public/soundFiles/' + newText + '.wav'
+    let fileLoc = 'http://localhost:8080/soundFiles/' + newText + '.wav'
     text_to_speech.synthesize(params)
       .on('error', function (error) {
         console.log('Error: ', error);
       })
-      .pipe(fs.createWriteStream(file));
+      .pipe(fs.createWriteStream(file))
+      .on('finish', function () {
+        res.send({word: params.text, location: fileLoc});
+        next();
+      });
 }
 
 const vrHandler = function(req, res, next) {

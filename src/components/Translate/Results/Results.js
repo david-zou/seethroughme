@@ -27,11 +27,6 @@ class Results extends Component {
   }
 
   getTranslation(translations, newLanguage) {
-    console.log('the new language is: ', this.spokenLanguages[newLanguage]);
-    console.log('checking to see if spoken updates: ', this.state.spokenLanguage)
-    // this.setState({
-    //   spokenLanguage: this.spokenLanguages[newLanguage]
-    // })
     console.log('translations in results.js: ', translations);
     console.dir(`this.props.keywords[0].class: ${this.props.keywords[0].class}`);
     let newwords = this.props.keywords.map((keyword, index) => {
@@ -44,7 +39,6 @@ class Results extends Component {
       wordTiles: this.state.wordTiles.concat(newwords),
       spokenLanguage: this.spokenLanguages[newLanguage]
     })
-    console.log('checking to see if spoken updates: ', this.state.spokenLanguage)
   }
 
   render() {
