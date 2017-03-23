@@ -11,6 +11,7 @@ npm-debug.log
 bundles/
 
 public/uploads/
+public/soundFiles/
 
 config/
 

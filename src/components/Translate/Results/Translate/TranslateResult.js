@@ -34,7 +34,7 @@ class TranslateResult extends Component {
       axios.post('/api/translate', { keywords: this.state.keywords, source: 'en', target: this.state.targetLanguage })
         .then((result) => {
           let translations = result.data.data.translations.map(v => v.translatedText);
-          this.props.getTranslation(translations);
+          this.props.getTranslation(translations, this.state.targetLanguage);
         });
     });
   }

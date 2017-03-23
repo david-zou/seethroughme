@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/upload', requestHandlers.vrHandler);
 
+router.post('/speech', requestHandlers.speechHandler);
 
 router.use('/img', utility.fileParser.any());
 
