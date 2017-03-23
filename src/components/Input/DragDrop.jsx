@@ -26,7 +26,7 @@ class DragDrop extends Component{
         console.log('response:', res);
         console.log('error:', err);
         console.log('http://localhost:8080/' + res.text);
-        this.props.changeParentUrl('http://localhost:8080/' + res.text);
+        this.props.changeParentUrl(window.location.href + res.text);
         this.setState({imgURL: res.text});
       });
   }
