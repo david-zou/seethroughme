@@ -70,6 +70,8 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <Input
+          handleSpinningProgress={this.props.handleSpinningProgress}
+          progressVisible={this.props.progressVisible}
           changeParentUrl={this.props.changeParentUrl}
           fetchIBM={this.props.fetchIBM}
         />

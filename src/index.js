@@ -15,7 +15,8 @@ class Root extends Component {
     this.state = {
       keywords: [],
       imgURL: '',
-      imageURL: ""
+      imageURL: "",
+      progressVisible: false
     }
 
     this.setRootKeywords = this.setRootKeywords.bind(this);
@@ -23,6 +24,7 @@ class Root extends Component {
     this.fetchIBM = this.fetchIBM.bind(this);
     this.handleImageSubmission = this.handleImageSubmission.bind(this);
     this.changeParentUrl = this.changeParentUrl.bind(this);
+    this.handleSpinningProgress = this.handleSpinningProgress.bind(this);
   }
 
   componentDidUpdate() {
@@ -85,6 +87,12 @@ class Root extends Component {
     });
   }
 
+  handleSpinningProgress() {
+    this.setState({
+    	progressVisible: !this.state.progressVisible      
+    })
+  }
+
   render() {
     const { children } = this.props;
 
@@ -94,6 +102,8 @@ class Root extends Component {
         React.cloneElement(children, 
         { setRootKeywords: this.setRootKeywords, 
         keywords: this.state.keywords, 
+        handleSpinningProgress: this.handleSpinningProgress,
+        progressVisible: this.state.progressVisible,
         setRootUrl: this.setRootUrl,
         imgURL: this.state.imgURL,
         imageURL: this.state.imageURL,
@@ -106,7 +116,7 @@ class Root extends Component {
 }
 
 ReactDOM.render((
-  <Router history={browserHistory}>
+  <Router history={browserHistory} >
     <Route path='/' component={Root}>
       <IndexRoute component={App} />
       <Route path='/translate' component={Translate} />

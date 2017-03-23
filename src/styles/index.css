@@ -41,7 +41,7 @@ body,
 /*--- flexbox for header and submit button center -------*/
 
 .input {
-  width: 250px;
+  width: 200px;
 }
 
 .input-header {
@@ -55,7 +55,7 @@ body,
 }
 
 .url-input-field {
-  order: 2;
+  order: 3;
 }
 
 .input-separator {
@@ -263,4 +263,20 @@ tr.keyword-header {
 .Post {
   border-top: 1px solid #24325E;
   /*border-bottom: 1px solid #24325E;*/
+}
+
+.submitButton {
+  /*width: 68px;*/
+  /*margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;*/
+  margin: 5px;
+}
+
+.backButton {
+  margin-bottom: 10px;
+}
+
+.spinner {
+  text-align: center;
 }
