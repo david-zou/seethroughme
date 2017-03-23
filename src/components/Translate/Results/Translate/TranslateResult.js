@@ -67,6 +67,9 @@ class TranslateResult extends Component {
          </div>
        </div>
        <div className="comingSoon">
+{/*         <div style={{display: "block", display: "3px"}}>
+            <p className="translate-header">Text-translation only</p>
+          </div>*/}
           <div className="flags img-responsive img-rounded" >
             <img className="flagImg" src={"assets/south-korea.png"} onClick={() => {this.onLangSelect("ko")}}/>
           </div>

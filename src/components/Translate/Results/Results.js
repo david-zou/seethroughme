@@ -50,7 +50,12 @@ class Results extends Component {
   render() {
     return (
       <div className="results-container, tile">
-        <div className="results-item"><TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} /></div>
+        <div className="results-item">
+          <div style={{display: "block", margin: "10px"}}>
+            <p className="translate-header" style={{display: "inline", fontSize:"14px", fontWeight:"bold"}}>Click to translate!</p>
+          </div>
+          <TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} />
+        </div>
         <WordTile keywords={this.props.keywords} wordTiles={ this.state.wordTiles } spokenLanguage={this.state.spokenLanguage}/>
       </div>
     )
