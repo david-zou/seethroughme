@@ -28,6 +28,9 @@ const speechHandler = function (req, res, next) {
     console.log(__dirname);
     let file = __dirname + '/../public/soundFiles/' + newText + '.wav'
     let fileLoc = 'http://localhost:8080/soundFiles/' + newText + '.wav'
+    if (__dirname === '/root/github/seethroughme/server') {
+      fileLoc = 'http://192.241.192.221:8080/soundFiles/' + newText + '.wav';
+    }
     text_to_speech.synthesize(params)
       .on('error', function (error) {
         console.log('Error: ', error);
