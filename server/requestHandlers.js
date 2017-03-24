@@ -25,6 +25,7 @@ const speechHandler = function (req, res, next) {
       voice: req.body.voice,
       accept: 'audio/wav'
     }
+    console.log(__dirname);
     let file = __dirname + '/../public/soundFiles/' + newText + '.wav'
     let fileLoc = 'http://localhost:8080/soundFiles/' + newText + '.wav'
     text_to_speech.synthesize(params)
