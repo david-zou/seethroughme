@@ -23,7 +23,7 @@ class DragDrop extends Component{
     Request.post('/api/img')
       .send(file)
       .on('error', function(err) {
-        alert('THIS IS A BIG BAD FILE \(> 2MB\). YOU SHOULD BE ASHAMED.');
+        alert('This file is too large (more than 2 MB). Please try again');
       })
       .end((err, res)=>{
       //we'll update this once we figure out hosting
