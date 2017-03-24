@@ -19,7 +19,7 @@ class Word extends React.Component {
       console.log('PROPS WORD', this.props.word.translation);
       console.log('RUNNING AUDIO WITH THIS URL', this.props.sound[this.props.word.translation]);
       if (this.props.sound[this.props.word.translation]) {
-        return <audio autoPlay>
+        return <audio autoPlay id={this.props.word.translation}>
                     <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                   </audio>
       } else {
@@ -27,8 +27,13 @@ class Word extends React.Component {
       }
     }
 
+    let play = () => {
+      let audio = document.getElementById(this.props.word.translation);
+      audio.play();
+    }
+
     return (
-      <div className="wordTile Post" onClick={ () => {this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
+      <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? play() : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
         <div>{ this.props.word.class }</div>
         <div>{ this.props.word.score }</div>
         <div>{ this.props.word.translation }</div>
