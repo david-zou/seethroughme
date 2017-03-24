@@ -92,7 +92,7 @@ body,
   /*height: 400px;
   width: 250px;
   overflow: scroll;*/
-  padding: 15%;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -109,7 +109,7 @@ img {
 .translate-container {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 20%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -347,3 +347,23 @@ tr.keyword-header {
 }
 
 /* --------Flags-------- */
+
+.pulse-ring {
+  box-shadow: 0 0 0 0 #337ab7;
+  -webkit-animation: pulse 0.05s infinite cubic-bezier(0.3, 0, 0, 0.3);
+  -moz-animation: pulse 0.05s infinite cubic-bezier(0.3, 0, 0, 0.3);
+  -ms-animation: pulse 0.05s infinite cubic-bezier(0.3, 0, 0, 0.3);
+  animation: pulse 0.05s infinite cubic-bezier(0.3, 0, 0, 0.3);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform:translateZ(0) scale(1.20); /* Safari and Chrome */
+  -moz-transform:scale(1.20); /* Firefox */
+  -ms-transform:scale(1.20); /* IE 9 */
+  -o-transform:translatZ(0) scale(1.20); /* Opera */
+  transform:translatZ(0) scale(1.20);
+}
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}

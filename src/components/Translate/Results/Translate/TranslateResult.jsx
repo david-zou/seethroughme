@@ -44,7 +44,7 @@ class TranslateResult extends Component {
       <div className="img-hover">
         <div className="withAudio">
           <div style={{display: "block"}}>
-            <img className="wave" src={"assets/levels.png"} style={{display: "inline"}}/>
+            <div>{ this.props.playing ? <img className="wave pulse-ring" src={"assets/levels.png"} style={{display: "inline"}}/> : <img className="wave" src={"assets/levels.png"} style={{display: "inline"}}/>  }</div>
             <p className="translate-header">Audio format supported</p>
           </div>
           <div className="flags img-responsive img-rounded" >
@@ -86,6 +86,12 @@ class TranslateResult extends Component {
       </div>
     )
   }
+}
+
+const Wave = () => {
+  return (
+    <img className="wave" src={"assets/soundwave.gif"} style={{display: "inline", margin: "10px"}}/>
+  );
 }
 
 export default TranslateResult;
