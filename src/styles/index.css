@@ -92,7 +92,7 @@ body,
   /*height: 400px;
   width: 250px;
   overflow: scroll;*/
-  padding: 15%;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -109,7 +109,7 @@ img {
 .translate-container {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 20%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -218,6 +218,7 @@ img {
   height: 50px;
   width: 50px;
   display: inline;
+  cursor: pointer;
 }
 
 .flagImg {
@@ -279,6 +280,7 @@ tr.keyword-header {
   text-align: center;
   padding-left: 30px;
   padding-right: 30px;
+  cursor: pointer;
 }
 
 .wordTiles :hover {
@@ -347,3 +349,39 @@ tr.keyword-header {
 }
 
 /* --------Flags-------- */
+
+.pulse-ring {
+  /*background: #cca92c;*/
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}

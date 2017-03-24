@@ -53,10 +53,11 @@ class WordTile extends Component {
 
 
   render() {
+    console.log(`wordtile: this.props.soundWaveHandler: ${this.props.soundWaveHandler}`);
     return this.props.wordTiles.length > 0 ? (
       <div className="wordTiles pre-scrollable postScroller">
         { this.props.wordTiles.map((word, index) => 
-          <Word key={index} word={ word } sound={this.state.soundFiles} synthesize={this.synthesize} spokenLanguage={this.props.spokenLanguage}/>
+        <Word key={index} word={ word } soundWaveHandler={this.props.soundWaveHandler} sound={this.state.soundFiles} synthesize={this.synthesize} spokenLanguage={this.props.spokenLanguage}/>
         )}
       </div>
     ) : (

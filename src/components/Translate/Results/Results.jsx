@@ -10,7 +10,8 @@ class Results extends Component {
 
     this.state = {
       wordTiles: [],
-      spokenLanguage: ''
+      spokenLanguage: '',
+      playing: false
     }
 
     this.getTranslation = this.getTranslation.bind(this);
@@ -24,6 +25,7 @@ class Results extends Component {
       pt: 'pt-BR_IsabelaVoice'
     };
     this.spokenLanguage = '';
+    this.soundWaveHandler = this.soundWaveHandler.bind(this);
   }
 
   getTranslation(translations, newLanguage) {
@@ -41,6 +43,13 @@ class Results extends Component {
     })
   }
 
+  soundWaveHandler() {
+    console.log(`this.state.playing: ${this.state.playing}`);
+    this.setState({
+      playing: !this.state.playing
+    })
+  }
+
   render() {
     return (
       <div className="results-container, tile">
@@ -48,9 +57,9 @@ class Results extends Component {
           <div style={{display: "block", margin: "10px"}}>
             <p className="translate-header" style={{display: "inline", fontSize:"14px", fontWeight:"bold"}}>Click to translate!</p>
           </div>
-          <TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} />
+          <TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} playing={this.state.playing} />
         </div>
-        <WordTile keywords={this.props.keywords} wordTiles={ this.state.wordTiles } spokenLanguage={this.state.spokenLanguage}/>
+        <WordTile keywords={this.props.keywords} wordTiles={ this.state.wordTiles } spokenLanguage={this.state.spokenLanguage} soundWaveHandler={this.soundWaveHandler}/>
       </div>
     )
   }

@@ -7,19 +7,18 @@ class Word extends React.Component {
     super(props);
 
     this.state = {
-      url: props.sound[props.word.translation]
+      url: props.sound[props.word.translation],
     }
   }
 
-
-
   render() {
+    console.log(`this.props.soundWaveHandler: ${this.props.soundWaveHandler}`);
     let audio = () => {
       console.log('PROPS SOUND', this.props.sound);
       console.log('PROPS WORD', this.props.word.translation);
       console.log('RUNNING AUDIO WITH THIS URL', this.props.sound[this.props.word.translation]);
       if (this.props.sound[this.props.word.translation]) {
-        return <audio autoPlay id={this.props.word.translation}>
+        return <audio id={this.props.word.translation} autoPlay onPlay={ () => {this.props.soundWaveHandler()}} onEnded={ () => {this.props.soundWaveHandler()}}>
                     <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                   </audio>
       } else {
@@ -35,7 +34,7 @@ class Word extends React.Component {
     return (
       <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? play() : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
         <div>{ this.props.word.class }</div>
-        <div>{ this.props.word.score }</div>
+        <div>{ `${ Math.floor(this.props.word.score*100) }%` }</div>
         <div>{ this.props.word.translation }</div>
         <div>
           {audio()}
@@ -44,7 +43,6 @@ class Word extends React.Component {
     )
   }
 }
-
 /*
 const Word = ({ word,spokenLanguage,sound }) => {
   console.log('SOUNDWORD: ', sound[word.translation]);
