@@ -54,22 +54,37 @@ class WordTile extends Component {
 
   render() {
     console.log(`wordtile: this.props.soundWaveHandler: ${this.props.soundWaveHandler}`);
-    return this.props.wordTiles.length > 0 ? (
-      <div className="wordTiles pre-scrollable postScroller">
-        { this.props.wordTiles.map((word, index) => 
-        <Word key={index} word={ word } soundWaveHandler={this.props.soundWaveHandler} sound={this.state.soundFiles} synthesize={this.synthesize} spokenLanguage={this.props.spokenLanguage}/>
-        )}
-      </div>
-    ) : (
-      <div className="wordTiles pre-scrollable postScroller">
-        { this.props.keywords.map((keyword, index) => 
-          <div className="wordTile Post" >
-            <div>{ keyword.class }</div>
-            <div>{`${ Math.floor(keyword.score*100) }%`}</div>
-          </div>
-        )}
+
+    let Tile = () => {
+      console.log('TILE IS BEING RAN');
+      if (this.props.wordTiles.length > 0) {
+        console.log('HAS LENGTH IN WORDTILE');
+        return (
+          <div className="wordTiles pre-scrollable postScroller">
+            { this.props.wordTiles.map((word, index) => 
+            <Word key={index} word={ word } soundWaveHandler={this.props.soundWaveHandler} sound={this.state.soundFiles} synthesize={this.synthesize} spokenLanguage={this.props.spokenLanguage}/>
+            )}
+        </div> )
+      } else {
+        console.log('HAS NO LENGTH IN WORDTILE');
+        return (
+        <div className="wordTiles pre-scrollable postScroller">
+          { this.props.keywords.map((keyword, index) => 
+            <div className="wordTile Post" >
+              <div>{ keyword.class }</div>
+              <div>{`${ Math.floor(keyword.score*100) }%`}</div>
+            </div>
+          )}
+        </div> )
+      }
+    }
+
+    return (
+      <div>
+        {Tile()}
       </div>
     )
+
   }
 }
 
