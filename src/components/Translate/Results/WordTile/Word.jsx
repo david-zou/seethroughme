@@ -19,7 +19,7 @@ class Word extends React.Component {
                     <audio id={this.props.word.translation} >
                       <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                     </audio>
-                    <button className="translateButton" onClick={play}>Translate</button>
+                    <button className="translateButton" onClick={playSong}>Translate</button>
                   </div>         
       } else {
         return null;
