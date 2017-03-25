@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 // import Keyword from './Keyword/Keyword.js';
 import TranslateResult from './Translate/TranslateResult.jsx';
 import WordTile from './WordTile/WordTile.jsx';
+import OCR from '../OCR/OCR.jsx';
+
+let TranscribeSection;
 
 class Results extends Component {
   constructor(props) {
@@ -11,7 +14,8 @@ class Results extends Component {
     this.state = {
       wordTiles: [],
       spokenLanguage: '',
-      playing: false
+      playing: false,
+      transcribing: false
     }
 
     this.getTranslation = this.getTranslation.bind(this);
@@ -26,6 +30,7 @@ class Results extends Component {
     };
     this.spokenLanguage = '';
     this.soundWaveHandler = this.soundWaveHandler.bind(this);
+    this.transcribe = this.transcribe.bind(this);
   }
 
   getTranslation(translations, newLanguage) {
@@ -50,7 +55,24 @@ class Results extends Component {
     })
   }
 
+  transcribe() {
+    this.setState({
+      transcribing: true
+    })
+  }
+
   render() {
+
+    if (this.state.transcribing) {
+      TranscribeSection = () => (
+        <OCR imgURL={this.props.imgURL}/>
+      )
+    } else {
+      TranscribeSection = () => (
+        <button className="btn btn-primary" onClick={this.transcribe}>Click here to transcribe!</button>
+      )
+    }
+
     return (
       <div className="results-container, tile">
         <div className="results-item">
@@ -60,6 +82,9 @@ class Results extends Component {
           <TranslateResult keywords={this.props.keywords} getTranslation={this.getTranslation} playing={this.state.playing} />
         </div>
         <WordTile keywords={this.props.keywords} wordTiles={ this.state.wordTiles } spokenLanguage={this.state.spokenLanguage} soundWaveHandler={this.soundWaveHandler}/>
+        <div className="ocr-container">
+          <TranscribeSection />
+        </div>
       </div>
     )
   }
