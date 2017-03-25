@@ -16,7 +16,8 @@ class Root extends Component {
       keywords: [],
       imgURL: '',
       imageURL: "",
-      progressVisible: false
+      progressVisible: false,
+      uploads: []
     }
 
     this.setRootKeywords = this.setRootKeywords.bind(this);
@@ -25,6 +26,8 @@ class Root extends Component {
     this.handleImageSubmission = this.handleImageSubmission.bind(this);
     this.changeParentUrl = this.changeParentUrl.bind(this);
     this.handleSpinningProgress = this.handleSpinningProgress.bind(this);
+    this.setUploads = this.setUploads.bind(this);
+    this.setImgURL = this.setImgURL.bind(this);
   }
 
   componentDidUpdate() {
@@ -42,6 +45,20 @@ class Root extends Component {
     this.setState({ imgURL: url });
   }
 
+  setUploads(imgURL) {
+    console.log('imgURL inside setUploads: ', imgURL);
+    this.setState({
+      uploads: this.state.uploads.concat([imgURL])
+    });
+    console.log('UPLOADS!!:', this.state.uploads);
+  }
+
+  setImgURL(imgURL) {
+    this.setState({
+      imgURL
+    })
+  }
+  
   // request server /api/upload to receive the ibm results
   // allow passing callback
   fetchIBM(cb) {
@@ -70,6 +87,7 @@ class Root extends Component {
       console.log('State changed to: ', this.state.imageURL);
       this.fetchIBM( (success) => {
         if (success) {
+          this.setUploads(this.state.imageURL);
           console.log("fetchIBM success the state.keywords ", this.state.keywords);
           this.setRootKeywords(this.state.keywords);
         } else {
@@ -111,7 +129,9 @@ class Root extends Component {
         handleSpinningProgress: this.state.handleSpinningProgress,
         progressVisible: this.state.progressVisible,
         changeParentUrl: this.changeParentUrl,
-        fetchIBM: this.fetchIBM
+        fetchIBM: this.fetchIBM,
+        uploads: this.state.uploads,
+        setImgURL: this.setImgURL
         })}
       </div>
     )
