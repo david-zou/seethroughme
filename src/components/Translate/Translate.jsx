@@ -8,7 +8,7 @@ class Translate extends Component {
     super(props);
 
     this.state = {
-      keywords: []
+      keywords: [],
     }
     
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -27,7 +27,7 @@ class Translate extends Component {
         <div className="translate-header">translation results</div>
         <div className="translate-components">
           <div className="image-div"><ImageView imgURL={this.props.imgURL} /></div>
-          <div className="results-div"><Results keywords={this.state.keywords} imgURL={this.props.imgURL} /></div>
+          <div className="results-div"><Results keywords={this.state.keywords} imgURL={this.props.imgURL}/></div>
         </div>
       </div>
     );

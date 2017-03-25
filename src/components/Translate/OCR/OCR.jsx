@@ -6,7 +6,7 @@ import Tesseract from 'tesseract.js';
      super(props);
 
      this.state = {
-       ocrString: null
+      //  ocrString: null
      }
    }
 
@@ -18,18 +18,17 @@ import Tesseract from 'tesseract.js';
     })
     .then(function(result){
       console.log('OCR RESULTS:', result.text);
-      context.setState({
-        ocrString: result.text
-      });
+      context.props.transcribe(result.text);
     });
   }
 
   render() {
+    console.log('this.props.ocrString:', this.props.ocrString);
     return (
         <div className="OCRTile">
           <p className="translate-header" style={{display: "inline", fontSize:"14px", fontWeight:"bold"}}>Transcription</p>
           <div>
-            { !this.state.ocrString ? (<img src="assets/spinner2.gif" />) : this.state.ocrString}
+            { !this.props.ocrString ? (<img src="assets/spinner2.gif" />) : this.props.ocrString}
           </div>
         </div>
     )

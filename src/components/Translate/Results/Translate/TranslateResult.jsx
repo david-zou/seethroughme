@@ -48,22 +48,22 @@ class TranslateResult extends Component {
             <p className="translate-header">Audio format supported</p>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/france.png"} onClick={() => {this.onLangSelect("fr")}}/>
+            <img className="flagImg" src={"assets/france.png"} onClick={() => {this.onLangSelect("fr"); this.props.changeTranscriptionLanguage("fr");}}/>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/japan.png"} onClick={() => {this.onLangSelect("ja")}}/>
+            <img className="flagImg" src={"assets/japan.png"} onClick={() => {this.onLangSelect("ja"); this.props.changeTranscriptionLanguage("ja");}}/>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/spain.png"} onClick={() => {this.onLangSelect("es")}}/>
+            <img className="flagImg" src={"assets/spain.png"} onClick={() => {this.onLangSelect("es"); this.props.changeTranscriptionLanguage("es");}}/>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/germany.png"} onClick={() => {this.onLangSelect("de")}}/>
+            <img className="flagImg" src={"assets/germany.png"} onClick={() => {this.onLangSelect("de"); this.props.changeTranscriptionLanguage("de");}}/>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/portugal.png"} onClick={() => {this.onLangSelect("pt")}}/>
+            <img className="flagImg" src={"assets/portugal.png"} onClick={() => {this.onLangSelect("pt"); this.props.changeTranscriptionLanguage("pt");}}/>
           </div>
           <div className="flags img-responsive img-rounded" >
-            <img className="flagImg" src={"assets/italy.png"} onClick={() => {this.onLangSelect("it")}}/>
+            <img className="flagImg" src={"assets/italy.png"} onClick={() => {this.onLangSelect("it"); this.props.changeTranscriptionLanguage("it");}}/>
          </div>
        </div>
        <div className="comingSoon">

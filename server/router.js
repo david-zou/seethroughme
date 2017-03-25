@@ -14,6 +14,8 @@ router.post('/img', requestHandlers.uploadImage);
 
 router.post('/translate', requestHandlers.translateHandler);
 
+router.post('/translateTranscription', requestHandlers.translateTranscriptionHandler);
+
 
 module.exports = router;
   
