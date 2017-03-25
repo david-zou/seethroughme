@@ -12,9 +12,9 @@ class Translate extends Component {
       keywords: [],
       /*keywords: []*/
     }
-/*    
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);*/
+    
+/*    this.componentDidMount = this.componentDidMount.bind(this);*/
+    // this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     console.log('translate UPLODAD:', this.props.uploads);
   }
 /*
@@ -23,14 +23,7 @@ class Translate extends Component {
       keywords: this.props.keywords,
     });
     console.log('this.state.keywords after mount: ', this.state.keywords);
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      keywords: this.props.keywords,
-    });
   }*/
-
 
   render() {
 
@@ -65,7 +58,6 @@ class Translate extends Component {
         <div className="translate-header">translation results</div>
         <div className="translate-components">
           <div className="image-div"><ImageView imgURL={this.props.imgURL} /></div>
-          <div className="results-div"><Results keywords={this.state.keywords} imgURL={this.props.imgURL}/></div>
           <div className="results-div"><Results keywords={this.props.keywords} imgURL={this.props.imgURL} /></div>
         </div>
       </div>

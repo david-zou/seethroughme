@@ -218,7 +218,7 @@ img {
   /*height: 50px;*/
   /*width: 50px;*/
   display: inline;
-  /*cursor: pointer;*/
+  cursor: pointer;
 }
 
 .flagImg {
@@ -395,4 +395,9 @@ tr.keyword-header {
   padding: 3px;
   max-height: 100px;
   max-width: 100px;
+  cursor: pointer;
+}
+
+.translateButton {
+  margin: 10px;
 }

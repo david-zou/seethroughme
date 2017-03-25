@@ -19,10 +19,10 @@ class Word extends React.Component {
       console.log('RUNNING AUDIO WITH THIS URL', this.props.sound[this.props.word.translation]);
       if (this.props.sound[this.props.word.translation]) {
         return <div>
-                    <audio id={this.props.word.translation}>
+                    <audio id={this.props.word.translation} >
                       <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                     </audio>
-                    <button onClick={play}>Translate</button>
+                    <button className="translateButton" onClick={play}>Translate</button>
                   </div>         
       } else {
         return null;
@@ -32,6 +32,10 @@ class Word extends React.Component {
     let play = () => {
       let audio = document.getElementById(this.props.word.translation);
       audio.play();
+      this.props.soundWaveHandler();
+      audio.onended = () => {
+        this.props.soundWaveHandler();
+      }
     }
 
     return (

@@ -98,8 +98,8 @@ class Root extends Component {
           this.setImgURL(this.state.imageURL);
           console.log("fetchIBM success the state.keywords ", this.state.keywords);
           this.setRootKeywords(this.state.keywords);
-        } else {
           this.handleSpinningProgress();
+        } else {
           console.log("fetchIBM failed");
         }
       });
