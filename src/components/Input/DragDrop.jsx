@@ -17,7 +17,6 @@ class DragDrop extends Component{
   }
 
   onDrop(acceptedFiles){
-    console.log('acceptedFiles:', acceptedFiles);
     let file = new FormData();
     file.append('westinFile', acceptedFiles[0]);
     Request.post('/api/img')
@@ -27,9 +26,6 @@ class DragDrop extends Component{
       })
       .end((err, res)=>{
       //we'll update this once we figure out hosting
-        console.log('response:', res);
-        console.log('error:', err);
-        console.log('http://localhost:8080/' + res.text);
         this.props.changeParentUrl(window.location.href + res.text);
         this.setState({imgURL: res.text});
       });

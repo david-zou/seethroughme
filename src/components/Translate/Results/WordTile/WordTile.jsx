@@ -21,9 +21,6 @@ class WordTile extends Component {
   }
 
   synthesize (word, language) {
-    console.log('IN SYNTHESIZE');
-    console.log(word)
-    console.log(language)
     axios.post('/api/speech', {text: word, voice: language, accept: 'audio/wav'} )
       .then((res) => {
         let newFiles = this.state.soundFiles;
@@ -31,34 +28,18 @@ class WordTile extends Component {
         this.setState({
           soundFiles: newFiles
         });
-        console.log('CURRENT STATE: ', this.state);
       })
       .catch((err) => {
         console.log('FOUND AN ERROR IN SYNTHESIZE: ', err);
       })
-    // console.log(fs, 'CREATE WRITE');
-    // let params = {
-    //   text: word,
-    //   voice: language,
-    //   accept: 'audio/wav'
-    // }
-    // let file = __dirname + '../public/' + word + '.wav'
-    // this.text_to_speech.synthesize(params)
-    //   .on('error', function (error) {
-    //     console.log('Error: ', error);
-    //   })
-    //   .pipe(fs.createWriteStream(file));
   }
 
 
 
   render() {
-    console.log(`wordtile: this.props.soundWaveHandler: ${this.props.soundWaveHandler}`);
 
     let Tile = () => {
-      console.log('TILE IS BEING RAN');
       if (this.props.wordTiles.length > 0) {
-        console.log('HAS LENGTH IN WORDTILE');
         return (
           <div className="wordTiles pre-scrollable postScroller">
             { this.props.wordTiles.map((word, index) => 
@@ -66,7 +47,6 @@ class WordTile extends Component {
             )}
         </div> )
       } else {
-        console.log('HAS NO LENGTH IN WORDTILE');
         return (
         <div className="wordTiles pre-scrollable postScroller">
           { this.props.keywords.map((keyword, index) => 

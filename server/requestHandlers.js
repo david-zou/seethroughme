@@ -136,8 +136,10 @@ const translateTranscriptionHandler = (req, res) => {
   let url = `https://translation.googleapis.com/language/translate/v2?key=${API_KEY_TRANSLATE}&source=${source}&target=${target}`;
 
   keywords.forEach((k) => {
+    console.log('concating k: ', k);
     let query = k.split(' ').join('%20');
     url += `&q=${query}`
+    console.log('url')
   })  
 
   console.log('url in transcription:', url);

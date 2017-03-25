@@ -40,14 +40,10 @@ class Results extends Component {
   }
 
   getTranslation(translations, newLanguage) {
-    console.log('translations in results.js: ', translations);
-    console.dir(`this.props.keywords[0].class: ${this.props.keywords[0].class}`);
     let newwords = this.props.keywords.map((keyword, index) => {
-      console.dir(keyword, 'KEYWORD');
       keyword.translation = translations[index];
       return keyword;
     });
-    console.log('newwords[1]: ', newwords[1]);
     this.setState ({
       wordTiles: newwords,
       spokenLanguage: this.spokenLanguages[newLanguage]
@@ -55,7 +51,6 @@ class Results extends Component {
   }
 
   soundWaveHandler() {
-    console.log(`this.state.playing: ${this.state.playing}`);
     this.setState({
       playing: !this.state.playing
     })

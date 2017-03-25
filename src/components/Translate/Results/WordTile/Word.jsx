@@ -12,25 +12,25 @@ class Word extends React.Component {
   }
 
   render() {
-    console.log(`this.props.soundWaveHandler: ${this.props.soundWaveHandler}`);
     let audio = () => {
-      console.log('PROPS SOUND', this.props.sound);
-      console.log('PROPS WORD', this.props.word.translation);
-      console.log('RUNNING AUDIO WITH THIS URL', this.props.sound[this.props.word.translation]);
+      console.log('AUDIO URL', this.props.sound[this.props.word.translation]);
       if (this.props.sound[this.props.word.translation]) {
         return <div>
                     <audio id={this.props.word.translation} >
                       <source src={this.props.sound[this.props.word.translation]} type="audio/wav" />
                     </audio>
-                    <button className="translateButton" onClick={play}>Translate</button>
+                    <button className="translateButton" onClick={playSong}>Translate</button>
                   </div>         
       } else {
         return null;
       }
     }
 
-    let play = () => {
+    let playSong = () => {
+      console.log(this.props.word.translation, "WORD BEING PLAYED")
+      console.log(this.props.sound, 'OBJECT WITH ALL WORDS')
       let audio = document.getElementById(this.props.word.translation);
+      console.log(audio);
       audio.play();
       this.props.soundWaveHandler();
       audio.onended = () => {
@@ -39,7 +39,7 @@ class Word extends React.Component {
     }
 
     return (
-      <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? play() : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
+      <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? null : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
         <div>{ this.props.word.class }</div>
         <div>{ `${ Math.floor(this.props.word.score*100) }%` }</div>
         <div>{ this.props.word.translation }</div>

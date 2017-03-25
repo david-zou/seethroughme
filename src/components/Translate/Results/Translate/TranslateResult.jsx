@@ -30,7 +30,6 @@ class TranslateResult extends Component {
     this.setState({
       targetLanguage: language
     }, () => {
-      // console.log(this.state.keywords, this.state.targetLanguage);
       axios.post('/api/translate', { keywords: this.state.keywords, source: 'en', target: this.state.targetLanguage })
         .then((result) => {
           let translations = result.data.data.translations.map(v => v.translatedText);
@@ -69,9 +68,6 @@ class TranslateResult extends Component {
          </div>
        </div>
        <div className="comingSoon">
-{/*         <div style={{display: "block", display: "3px"}}>
-            <p className="translate-header">Text-translation only</p>
-          </div>*/}
           <div className="flags img-responsive img-rounded" >
             <img className="flagImg" src={"assets/south-korea.png"} onClick={() => {this.onLangSelect("ko")}}/>
           </div>

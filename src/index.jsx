@@ -32,7 +32,6 @@ class Root extends Component {
   }
 
   componentDidUpdate() {
-    console.log('- component did update', this.state);
   }
 
   setRootKeywords(keywords) {
@@ -42,7 +41,6 @@ class Root extends Component {
   }
 
   setRootUrl(url) {
-    console.log('CALLING SETROOTURL:', url);
     this.setState({ imgURL: url });
   }
 
@@ -67,7 +65,6 @@ class Root extends Component {
   fetchIBM(cb) {
     // if the image exists (has been updated by user giving img url or drop down a image) 
     if (this.state.imageURL) {
-      console.log('POSTING FROM FETCHIBM');
       axios.post('/api/upload', { url: this.state.imageURL })
         .then(res => {
           res.data.sort(function (a,b) {
