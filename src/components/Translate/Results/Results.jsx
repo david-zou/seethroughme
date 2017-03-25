@@ -94,7 +94,6 @@ class Results extends Component {
   }
 
   render() {
-
     if (this.state.transcribing) {
       TranscribeSection = () => (
         <OCR imgURL={this.props.imgURL} ocrString={this.state.ocrString} transcribe={this.transcribe}/>
@@ -104,7 +103,7 @@ class Results extends Component {
         <button className="btn btn-primary" onClick={this.startTranscription}>Click here to transcribe!</button>
       )
     }
-
+    console.log('CURRENTKEYWORDS!!!!: ', this.props.keywords);
     return (
       <div className="results-container, tile">
         <div className="results-item">

@@ -10,19 +10,32 @@ class Translate extends Component {
 
     this.state = {
       keywords: [],
+      /*keywords: []*/
     }
-    
+/*    
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);*/
     console.log('translate UPLODAD:', this.props.uploads);
   }
-
+/*
   componentDidMount() {
     this.setState({
       keywords: this.props.keywords,
     });
+    console.log('this.state.keywords after mount: ', this.state.keywords);
   }
 
+  componentWillReceiveProps() {
+    this.setState({
+      keywords: this.props.keywords,
+    });
+  }*/
+
+
   render() {
+
+    console.log('this.props.keywords!: ', this.props.keywords);
+    console.log('this.state.keywords in render: ', this.state.keywords);
     const settings = { 
       dots: true,
       dotsClass: 'slick-dots slick-thumb',
@@ -53,6 +66,7 @@ class Translate extends Component {
         <div className="translate-components">
           <div className="image-div"><ImageView imgURL={this.props.imgURL} /></div>
           <div className="results-div"><Results keywords={this.state.keywords} imgURL={this.props.imgURL}/></div>
+          <div className="results-div"><Results keywords={this.props.keywords} imgURL={this.props.imgURL} /></div>
         </div>
       </div>
     );
