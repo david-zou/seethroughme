@@ -16,7 +16,8 @@ module.exports = {
     loaders: [
       {
         loader: 'babel-loader',
-        test: /\.jsx?$/
+        exclude: /node_modules/,
+        test: /\.jsx?$/,
       },
       {
         test: /\.css$/,
@@ -27,6 +28,13 @@ module.exports = {
         loader: 'url?limit=25000'
       }
     ]
+  },
+  
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   },
   devtool: "source-map"
 }

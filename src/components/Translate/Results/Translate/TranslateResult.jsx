@@ -43,10 +43,12 @@ class TranslateResult extends Component {
     return (
       <div className="img-hover">
         <div className="withAudio">
-          <div style={{display: "block"}}>
-            <div>{ this.props.playing ? <img className="wave pulse-ring" src={"assets/levels.png"} style={{display: "inline"}}/> : <img className="wave" src={"assets/levels.png"} style={{display: "inline"}}/>  }</div>
-            <p className="translate-header">Audio format supported</p>
-          </div>
+            { 
+              <div style={{display: "block"}}>
+                <img className={ this.props.playing ? "wave pulse-ring" : "wave" } src={"assets/levels.png"} style={{display: "inline"}}/>
+                <p className="translate-header">Audio format supported</p>
+              </div>
+              }
           <div className="flags img-responsive img-rounded" >
             <img className="flagImg" src={"assets/france.png"} onClick={() => {this.onLangSelect("fr"); this.props.changeTranscriptionLanguage("fr");}}/>
           </div>
@@ -86,12 +88,6 @@ class TranslateResult extends Component {
       </div>
     )
   }
-}
-
-const Wave = () => {
-  return (
-    <img className="wave" src={"assets/soundwave.gif"} style={{display: "inline", margin: "10px"}}/>
-  );
 }
 
 export default TranslateResult;

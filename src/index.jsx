@@ -16,7 +16,9 @@ class Root extends Component {
       keywords: [],
       imgURL: '',
       imageURL: "",
-      progressVisible: false
+      progressVisible: false,
+      uploads: [],
+      currentKeywords: []
     }
 
     this.setRootKeywords = this.setRootKeywords.bind(this);
@@ -25,6 +27,8 @@ class Root extends Component {
     this.handleImageSubmission = this.handleImageSubmission.bind(this);
     this.changeParentUrl = this.changeParentUrl.bind(this);
     this.handleSpinningProgress = this.handleSpinningProgress.bind(this);
+    this.setUploads = this.setUploads.bind(this);
+    this.setImgURL = this.setImgURL.bind(this);
   }
 
   componentDidUpdate() {
@@ -42,6 +46,22 @@ class Root extends Component {
     this.setState({ imgURL: url });
   }
 
+  setUploads(imgURL) {
+    console.log('imgURL inside setUploads: ', imgURL);
+    this.setState({
+      uploads: this.state.uploads.concat([imgURL])
+    });
+    console.log('UPLOADS!!:', this.state.uploads);
+  }
+
+  setImgURL(imgURL) {
+    let current = this.state.keywords.filter((obj) => obj.url === imgURL )[0]['keywords'];
+    console.log('Current!!:', current);
+    this.setState({ 
+      imgURL: imgURL, 
+      currentKeywords: current
+    })
+  }
   // request server /api/upload to receive the ibm results
   // allow passing callback
   fetchIBM(cb) {
@@ -53,7 +73,11 @@ class Root extends Component {
           res.data.sort(function (a,b) {
             return b.score-a.score;
           });
-          this.setState({ keywords: res.data }, () => {
+          let obj = {
+            url: this.state.imageURL,
+            keywords: res.data
+          }
+          this.setState({ keywords: [...this.state.keywords, obj] }, () => {
             cb(true);
           });
         })
@@ -70,10 +94,12 @@ class Root extends Component {
       console.log('State changed to: ', this.state.imageURL);
       this.fetchIBM( (success) => {
         if (success) {
+          this.setUploads(this.state.imageURL);
+          this.setImgURL(this.state.imageURL);
           console.log("fetchIBM success the state.keywords ", this.state.keywords);
           this.setRootKeywords(this.state.keywords);
-        } else {
           this.handleSpinningProgress();
+        } else {
           console.log("fetchIBM failed");
         }
       });
@@ -104,14 +130,16 @@ class Root extends Component {
         { children && 
         React.cloneElement(children, 
         { setRootKeywords: this.setRootKeywords, 
-        keywords: this.state.keywords, 
+        keywords: this.state.currentKeywords, 
         setRootUrl: this.setRootUrl,
         imgURL: this.state.imgURL,
         imageURL: this.state.imageURL,
         handleSpinningProgress: this.state.handleSpinningProgress,
         progressVisible: this.state.progressVisible,
         changeParentUrl: this.changeParentUrl,
-        fetchIBM: this.fetchIBM
+        fetchIBM: this.fetchIBM,
+        uploads: this.state.uploads,
+        setImgURL: this.setImgURL
         })}
       </div>
     )
