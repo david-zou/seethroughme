@@ -21,6 +21,7 @@
     "react-router-transition": "^0.0.6",
     "react-slick": "^0.14.7",
     "react-sound": "^0.5.2",
+    "tesseract.js": "^1.0.10",
     "watson-developer-cloud": "^2.27.1"
   },
   "devDependencies": {
