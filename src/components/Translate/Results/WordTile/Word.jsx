@@ -29,8 +29,11 @@ class Word extends React.Component {
       }
     }
 
-    let play = () => {
+    let playSong = () => {
+      console.log(this.props.word.translation, "WORD BEING PLAYED")
+      console.log(this.props.sound, 'OBJECT WITH ALL WORDS')
       let audio = document.getElementById(this.props.word.translation);
+      console.log(audio);
       audio.play();
       this.props.soundWaveHandler();
       audio.onended = () => {
@@ -39,7 +42,7 @@ class Word extends React.Component {
     }
 
     return (
-      <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? play() : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
+      <div className="wordTile Post" onClick={ () => {(this.props.sound[this.props.word.translation]) ? playSong() : this.props.synthesize(this.props.word.translation, this.props.spokenLanguage)}}>
         <div>{ this.props.word.class }</div>
         <div>{ `${ Math.floor(this.props.word.score*100) }%` }</div>
         <div>{ this.props.word.translation }</div>
